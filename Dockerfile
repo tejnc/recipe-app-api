@@ -19,5 +19,5 @@ COPY ./app /app
 
 
 # for security purposes
-RUN add -D user
+RUN adduser -D user
 USER user 
