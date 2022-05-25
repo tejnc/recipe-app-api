@@ -2,6 +2,9 @@ on: [push]
 
 jobs: 
   testing_django_project:
+    name: testing
+    runs-on: ubuntu-latest
+    
     steps:
       - name: first step
         uses: docker://python:3.7-alpine
