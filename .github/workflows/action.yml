@@ -4,8 +4,11 @@ jobs:
   testing_django_project:
     name: testing
     runs-on: ubuntu-latest
-    
+
     steps:
+      - name: initial step
+        uses: actions/checkout@v3
+      
       - name: first step
         uses: docker://python:3.7-alpine
         
