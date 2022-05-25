@@ -17,6 +17,9 @@ WORKDIR /app
 
 COPY ./app /app 
 
+# copying docker-compose file for ci/cd in github actions
+COPY ./docker-compose-yml /docker-compose.yml
+
 
 # for security purposes
 RUN adduser -D user
