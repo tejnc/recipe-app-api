@@ -5,6 +5,8 @@ jobs:
     steps:
       - name: first step
         uses: docker://python:3.7-alpine
+        
+      - name: installing docker-compose
         run: pip install docker-compose
 
       - name: run test
