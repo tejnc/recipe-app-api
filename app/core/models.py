@@ -1,24 +1,27 @@
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
-    PermissionsMixin
 
 
-# Create your models here.
 class UserManager(BaseUserManager):
-
     def create_user(self, email, password=None, **extra_fields):
-        """ Creates and saves a new user"""
+        """Creates and saves a new user"""
         if not email:
             raise ValueError("Users must have an email address")
 
-        user = self.model(email=self.normalize_email(email), **extra_fields)
+        user = self.model(
+            email=self.normalize_email(email), **extra_fields
+        )  # normalizes email or say lowercases the email
         user.set_password(password)
-        user.save(using=self._db)
+        user.save(using=self._db)  # mostly for multiple databases
 
         return user
 
     def create_superuser(self, email, password):
-        """ creates and saves a new superuser"""
+        """creates and saves a new superuser"""
         user = self.create_user(email, password)
         user.is_staff = True
         user.is_superuser = True
@@ -29,6 +32,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     """Custom user model that support using email instead of username"""
+
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
@@ -36,4 +40,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
