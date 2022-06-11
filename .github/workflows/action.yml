@@ -1,19 +1,19 @@
-on: [push]
+# on: [push]
 
-jobs: 
-  testing_django_project:
-    name: testing
-    runs-on: ubuntu-latest
+# jobs: 
+#   testing_django_project:
+#     name: testing
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: initial step
-        uses: actions/checkout@v3
+#     steps:
+#       - name: initial step
+#         uses: actions/checkout@v3
       
-      - name: first step
-        uses: docker://python:3.7-alpine
+#       - name: first step
+#         uses: docker://python:3.7-alpine
         
-      - name: installing docker-compose
-        run: pip install docker-compose
+#       - name: installing docker-compose
+#         run: pip install docker-compose
 
-      - name: run test
-        run: docker-compose run app sh -c "python manage.py test && flake8"
+#       - name: run test
+#         run: docker-compose run app sh -c "python manage.py test && flake8"
